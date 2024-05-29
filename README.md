@@ -1,70 +1,239 @@
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Shrine Finder ⛩️
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+>There are estimated to be around 80,000 shrines in Japan. - wiki
+Shrine Finder is a web applicatoin designed for tourists in Japan to discover lesser-known shrines that are off the beaten path. The app provides detailed information about each shrine, including unique features, associated deities, and available lucky charms (omamori) or shrine seals/calligraphy (goshuin).
 
-### `npm start`
+### Problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Japan has become increasingly crowded with tourism, making it challenging to find serene and less crowded shrines. The Shrine Finder app addresses this issue by helping users locate tranquil and unique shrines, enhancing their cultural experience. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### User Profile
 
-### `npm test`
+Target users: 
+- tourists in Japan looking for cultural experiences
+- individuals interested in Shintoism, Shinto shrines and Japanese culture
+- individuals that are interested in hiking, nature, and slow life lifestyle
+- individuals who want to learn more about shrines/Japanese Shintoism/Japanese Culture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+- Users want to be able to find unique shrine sites near them 
+- Users want to be able to find unique shrines that are not the main shrines in their networks, and find out why they are special
+- Users want to be able to find unique features of shrines 
+- Users want to know whether there are certain consumables for purchase at said shrines
+- Users want to see a photo of a shrine to determine if it's worth visiting
+- Users want to see user generated reviews about each location
+- Users want to be able to upload and delete their own review of each location
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Implementation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- Express
+- Client libraries: 
+    - react
+    - react-router
+    - axios
+    - mapbox-sdk-js (potentially)
+- Server libraries:
+    - express
+    - json file for storing shrine data initially
 
-### `npm run eject`
+### APIs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Mapbox API
+- Google/Google Maps API
+(one of the two, as yet undecided)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sitemap
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Styled across mobile, tablet, and desktop breakpoints**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- HomePage with two route paths showing a main shrine photo (potentially a placeholder) and then a menu of shrines at the bottom with locations depending on the city/town you're in then clicking a button takes you to a map (maybe with directions)
 
-## Learn More
+### Mockups
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Mobile landing/cover page (potential)](src/assets/mockups/mockup.png)
+![HomePage top (desktop)](src/assets/mockups/mockup2.png)
+![HomePage lower section (desktop)](src/assets/mockups/mockup3.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Data
 
-### Code Splitting
+**Data Sources & Relationships**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This application fetches data from two separate data sources:
+- Mapping API : Location Coordinates (latitude, longitude)
+- JSON file on server containing supplementary data that enriches the MAP API data (see Endpoints for exmamples)
 
-### Analyzing the Bundle Size
+**Data Integration**
+- API Calls: Axios makes a request to the mapping API using its URL and fetches the location data
+- JSON File Retrieval: Axios fetches the JSON file located on the server
+- Both datasets are processed and transformed as needed for the application's logic. Including parsing JSON data, extracting relevant information, and potentially combining data points based on identifiers (e.g., location ID). 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Mapbox API 
+**GET /location/:place** - retrieves location
 
-### Advanced Configuration
+Response:
+```
+{
+  "type": "FeatureCollection",
+  "query": ["kasuga", "taisha"],
+  "features": [
+    {
+      "id": "poi.1234567890abcdef",
+      "type": "Feature",
+      "place_type": ["poi"],
+      "relevance": 1,
+      "properties": {
+        "landmark": true,
+        "category": "shrine"
+      },
+      "text": "Kasuga Taisha",
+      "place_name": "Kasuga Taisha, Nara, Japan",
+      "center": [135.8497, 34.6814],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [135.8497, 34.6814]
+      },
+      "context": [
+        {
+          "id": "region.123456",
+          "text": "Nara"
+        },
+        {
+          "id": "country.123456",
+          "text": "Japan"
+        }
+      ]
+    }
+  ],
+  "attribution": "© Mapbox and its data providers"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- JSON data
+**GET /shrines**  - retrieves a list of all shrines
 
-### Deployment
+Parameters:
+- latitude: User-provided location as a number
+- longitude: User-provided location as a number
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Response:
+```
+[
+    {
+        "id": 1,
+        "name": "Kasuga Taisha",
+        "location": {"lat": 34.6814, "lng": 135.8497},
+        "city": "Nara",
+        "country": "Japan",
+        "image": "/filepath/image.jpeg"
+        "description": "Known for its many bronze and stone Kasuga lanterns and its significance to the Fujiwara clan.",
+        "deities": ["Takemikazuchi", "Futsunushi", "Amenokoyane", "Himegami"],
+        "features": ["Lanterns", "Sacred Deer park"],
+        "reviews": []
+    },
+    ...
+]
+```
 
-### `npm run build` fails to minify
+**GET /shrines/:id** - detailed information about a specific shrine
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Response - same as above but isolated by ID
+
+**POST /shrines/reviews** - add a review for a specific shrine
+
+Request body:
+```
+
+    {
+        "rating": 5,
+        "comment": "I was here for the new years celebrations and the food stalls were amazing!"
+        
+    }
+    
+```
+Response:
+```
+[
+    {
+        "id": 1,
+        "name": "Kasuga Taisha",
+        "location": {"lat": 34.6814, "lng": 135.8497},
+        "city": "Nara",
+        "country": "Japan",
+        "description": "Known for its many bronze and stone Kasuga lanterns and its significance to the Fujiwara clan.",
+        "deities": ["Takemikazuchi", "Futsunushi", "Amenokoyane", "Himegami"],
+        "features": ["Lanterns", "Sacred Deer park"],
+        "reviews": [
+            {
+              "rating": 5,
+              "comment": "I was here for the new years celebrations and the food stalls were amazing!"
+            }
+        ]
+    },
+    ...
+]
+```
+
+**DELETE /shrines/reviews** : - delete a review for a specific shrine
+
+Response: Status message indicating success or failure.
+
+### Auth
+
+(Authentication is not planned for the initial version. If login functionality and user profies are added at a later point, authentication methods will be added here.)
+
+## Roadmap
+
+- Create client
+    - react project with routes and boilerplate pages
+
+- Create server
+    - express project with routing, with placeholder xxx responses
+
+- Gather 10-15 sample shrine geolocations in 5 different cities (maybe less)
+
+- Deploy client and server projects so all commits will be reflected in production
+
+- Create API endpoints server side
+
+- Create JSON data file server side
+
+- Create API classes + methods client side
+
+- Feature: List shrines from a given location under each respective heading
+    - Implement list shrine section page 
+
+- Feature: View shrines
+    - Implement view shrine page (maybe the main page)
+
+- Feature: Review shrines
+    - Add form input to view shrine page
+    - Create POST /ratings
+    - States for add & update ratings 
+
+- Some more steps here    
+
+- Feature: Home page
+
+- Bug fixes
+
+- DEMO DAY
+
+## Nice-to-haves
+
+**Wikipedia API Integration:** Fetches detailed information about certain shrines and adds a glossary component
+**Geolocation API:** Adding ability to find shrines near user's location
+**Search Filters:** Search by shrine features, deities, etc.
+**Multi Language Support:** Provide information in multiple languages for international tourists
+**mySQL or MongooseDB:** Holds data + photos in one database instead of JSON file, will have to do more research to see if this makes sense 
+**Cover Page** for a more polished feel
