@@ -1,0 +1,14 @@
+@use 'variables' as *;
+@use 'typography' as *;
+@use 'mixins' as *;
+
+body {
+    margin: 0;
+    font-family: $font-local;
+    color: $primary-text-color;
+    background: $background-color;
+  }
+
+  h1 {
+    @include font-bodycopy;
+  }

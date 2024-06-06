@@ -1,4 +1,5 @@
 import './App.scss';
+import "./styles/partials/_globals.scss";
 
 function App() {
   return (
