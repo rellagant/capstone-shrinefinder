@@ -7,11 +7,10 @@ export default function Footer() {
   return (
     <>
       <footer className="footer">
-        <h5 className="footer__header">Get in Touch</h5>
         <div className="footer__text">
-          <p className="footer__text">
+          <p className="footer__copyright">
             © Shrinefider. All
-            Rights Reserved.
+            Rights Reserved. 
           </p>
         </div>
         <div className="footer__icons">
