@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.footer {
+    display: flex;
+    flex-direction: row;
+
+
+    &__text {
+        font-size: small;
+    }
+
+
+    &__icon-github,
+    &__icon-linkedin {
+        width: 1.5625rem;
+        height: 1.5625rem;
+        background: $light-bamboo; 
+    }
+}
