@@ -1,0 +1,39 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.header {
+  display: flex;
+  margin: 1rem 0 0 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 5.9375rem;
+    @include desktop {
+      justify-content: space-evenly;
+      gap: 20rem;
+    }
+  }
+
+  &__logo {
+    @include logo;
+    align-self: center;
+    height: 4rem;
+    width: 4rem;
+    @include tablet {
+      margin-left: 1.25rem;
+      @include desktop {
+      }
+    }
+  }
+
+  &__button {
+    @include font-labelsbuttons;
+    background-color: $light-bamboo;
+    border-radius: 5rem;
+    padding: 0.3rem 0.5rem;
+    margin-right: 1.5rem;
+    border: none;
+  }
+}
