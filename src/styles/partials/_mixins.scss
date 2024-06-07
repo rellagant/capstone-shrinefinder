@@ -50,10 +50,16 @@
     font-size: 0.625rem;
     line-height: 1.25rem;
     text-transform: uppercase;
-    color: $secondary-text-color;
+    // color: white;
     @include tablet {
       font-weight: 700;
       font-size: 0.75rem;
       line-height: 1.25rem;
     }
+  }
+
+  @mixin logo {
+    height: 3.125rem;
+    width: 3.125rem;
+    background: $alabaster;
   }
