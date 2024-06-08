@@ -1,0 +1,35 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.shrine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $alabaster;
+
+    &__header {
+        @include font-pageheader;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+    &__title {
+        @include font-labelsbuttons;
+    }
+
+    &__city {
+        @include font-bodycopy
+    }
+
+    &__image {
+        height: 11.875rem;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.25rem;
+        margin: 1rem 0 1rem;
+    }
+}

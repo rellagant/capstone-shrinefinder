@@ -16,12 +16,12 @@ const ShrineRoulette = () => {
   }
 
   return (
-    <div>
-      <h2>Random Shrine</h2>
-      <div>
-        <h3>{randomShrine.name}</h3>
-        <p>City: {randomShrine.city}</p>
-        <img src={randomShrine.image} alt="random" />
+    <div className="shrine">
+      <h2 className="shrine__header">Time to Shrine</h2>
+      <div className="shrine__wrapper">
+        <div className="shrine__title">Name: {randomShrine.name}</div>
+        <p className="shrine__city">City: {randomShrine.city}</p>
+        <img src={randomShrine.image} alt="random" className="shrine__image"/>
       </div>
     </div>
   );
