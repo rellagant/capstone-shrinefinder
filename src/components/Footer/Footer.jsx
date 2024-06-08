@@ -9,7 +9,7 @@ export default function Footer() {
       <footer className="footer">
         <div className="footer__text">
           <p className="footer__copyright">
-            © Shrinefider. All
+            © Shrinefinder. All
             Rights Reserved. 
           </p>
         </div>
