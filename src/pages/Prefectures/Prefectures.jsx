@@ -2,8 +2,9 @@ import Header from "../../components/Header/Header";
 import "./Prefectures.scss";
 import Footer from "../../components/Footer/Footer";
 import { useEffect} from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { useShrineByPrefecture } from "../../classes/hooks";
+import { useParams, useLocation, Link } from "react-router-dom";
+import { useShrineByPrefecture } from "../../utils/hooks";
+// import ShrineMain from "../../components/ShrineMain/ShrineMain";
 
 // const api = new ShrineFinderApi();
 
@@ -52,18 +53,23 @@ export default function Prefectures() {
   return (
     <>
       <Header />
+      {/* <ShrineMain /> */}
       <div className="shrines">
         <h1 className="shrines__header">Shrines and Power Spots in {id}</h1>
-        <div>
+        <div> 
           {shrineData
             .filter((prefecture) => prefecture.prefecture === id) // Filter by the current prefecture
             .map((prefecture) => (
+              
               <div key={prefecture.prefecture}>
                 {prefecture.shrines.map((shrine) => (
+              
                   <div key={shrine.id}>
                     <h4>{shrine.name}</h4>
                     <p>{shrine.city}</p>
+                    <Link key={shrine.id} to={`/shrine/${shrine.id}`}>
                     <img src={shrine.image} alt={`${shrine.name} shrine`} />
+                    </Link>
                   </div>
                 ))}
               </div>
