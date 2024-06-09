@@ -1,5 +1,8 @@
 import "./ShrineRoulette.scss";
 import { useRandomShrines } from "../../utils/hooks";
+import { ShrineFinderApi } from "../../utils/shrinesapi";
+
+const api = new ShrineFinderApi();
 
 const ShrineRoulette = () => {
   const { randomShrine, loading, error } = useRandomShrines();
@@ -21,7 +24,7 @@ const ShrineRoulette = () => {
       <div className="shrine__wrapper">
         <div className="shrine__title">Name: {randomShrine.name}</div>
         <p className="shrine__city">City: {randomShrine.city}</p>
-        <img src={randomShrine.image} alt="random" className="shrine__image"/>
+        <img src={api.baseURL+randomShrine.image} alt="random" className="shrine__image"/>
       </div>
     </div>
   );
