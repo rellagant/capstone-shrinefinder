@@ -11,25 +11,19 @@ import { ShrineFinderApi } from "../../utils/shrinesapi";
 const api = new ShrineFinderApi();
 
 export default function Menu() {
-  // const [shrines, setShrines] = useState([]);
   const [prefectures, setPrefectures] = useState([]);
 
   useEffect(() => {
-    const fetchShrines = async () => {
+    const fetchPrefectures = async () => {
       try {
-        const shrinesData = await api.getShrines();
-        // setShrines(shrinesData);
+        const prefecturesData = await api.getPrefectures();
 
-        const uniquePrefectures = [
-          ...new Set(shrinesData.map((shrine) => shrine.prefecture)),
-        ];
-
-        setPrefectures(uniquePrefectures);
+        setPrefectures(prefecturesData);
       } catch (error) {
-        console.error("Error fetching shrines:", error);
+        console.error("Error fetching prefectures:", error);
       }
     };
-    fetchShrines();
+    fetchPrefectures();
   }, []);
 
   const prefectureImages = {
@@ -46,7 +40,7 @@ export default function Menu() {
         <h2 className="menu__title">Choose a Prefecture</h2>
         <div className="menu__map">
           {prefectures.map((prefecture) => (
-            <Link key={prefecture} to={`/${prefecture}`}>
+            <Link key={prefecture} to={`shrines/${prefecture}`}>
               <img
                 src={prefectureImages[prefecture.toLowerCase()]}
                 alt={`${prefecture} prefecture`}
