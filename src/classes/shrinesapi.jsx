@@ -2,7 +2,6 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 export class ShrineFinderApi {
   constructor() {
     this.baseURL = API_URL;
@@ -38,6 +37,21 @@ export class ShrineFinderApi {
     }
   }
 
+  async getShrinesByPrefecture() {
+    try {
+      const response = await axios.get(
+        `${this.baseURL}/sortedByPrefecture`
+      ); 
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error fetching shrines by prefecture:',
+        error
+      );
+      throw error;
+    }
+  }
+
   async postReview(shrineId, review) {
     try {
       const response = await axios.post(
@@ -46,7 +60,7 @@ export class ShrineFinderApi {
       );
       return response.data;
     } catch (error) {
-      console.error(`Error posting reivew for shrine ${shrineId}:`, error);
+      console.error(`Error posting review for shrine ${shrineId}:`, error);
       throw error;
     }
   }
