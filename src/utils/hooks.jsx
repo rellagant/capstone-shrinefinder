@@ -27,32 +27,3 @@ export const useRandomShrines = () => {
 
   return { randomShrine, loading, error };
 };
-
-export const useShrineByPrefecture = (prefectureId) => {
-  const [shrineData, setShrineData] = useState([]);
- 
-
-  useEffect(() => {
-    const fetchShrines = async () => {
-      try {
-        const shrines = await api.getShrines();
-        const uniquePrefectures = [...new Set(shrines.map((shrine) => shrine.prefecture))];
-
-        const shrineByPrefecture = uniquePrefectures.map((prefecture) => {
-          const shrinesInPrefecture = shrines.filter((shrine) => shrine.prefecture === prefectureId);
-          return { prefecture, shrines: shrinesInPrefecture };
-        });
-        setShrineData(shrineByPrefecture);
-      } catch (error) {
-        console.error("Error fetching shrines for fun", error);
-      }
-    };
-
-    fetchShrines();
-  }, [prefectureId]);
-
-  return shrineData;
-
-}
- 
-// export default useRandomShrines;
