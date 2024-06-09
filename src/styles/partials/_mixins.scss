@@ -69,6 +69,17 @@
   }
 }
 
+@mixin font-medium {
+  font-family: $font-local;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  @include tablet {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+  }
+}
+
 @mixin logo {
   height: 3.125rem;
   width: 3.125rem;
