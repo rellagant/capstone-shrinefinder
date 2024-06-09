@@ -1,0 +1,16 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+
+img {
+    height: 11.875rem;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin: .5rem 1rem; 
+    @include tablet {
+        height: 23rem;
+        width: 97vw;
+        margin: 1rem 1rem;
+    }
+}
