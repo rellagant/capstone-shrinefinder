@@ -1,5 +1,5 @@
 import "./ShrineRoulette.scss";
-import useRandomShrines from "../../classes/hooks";
+import { useRandomShrines } from "../../classes/hooks";
 
 const ShrineRoulette = () => {
   const { randomShrine, loading, error } = useRandomShrines();
@@ -17,7 +17,7 @@ const ShrineRoulette = () => {
 
   return (
     <div className="shrine">
-      <h2 className="shrine__header">Time to Shrine</h2>
+      <h2 className="shrine__header">Rise and Shrine</h2>
       <div className="shrine__wrapper">
         <div className="shrine__title">Name: {randomShrine.name}</div>
         <p className="shrine__city">City: {randomShrine.city}</p>

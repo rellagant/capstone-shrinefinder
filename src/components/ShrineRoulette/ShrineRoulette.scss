@@ -22,7 +22,7 @@
     }
 
     &__city {
-        @include font-bodycopy
+        @include font-labelsbuttons;
     }
 
     &__image {
@@ -30,6 +30,11 @@
         width: 100%;
         object-fit: cover;
         border-radius: 0.25rem;
-        margin: 1rem 0 1rem;
+        margin: 1rem 0 0 0;
+        @include tablet {
+            height: 40rem;
+            width: 97vw;
+            margin: 1.5rem 1rem;
+        }
     }
 }
