@@ -3,63 +3,74 @@
 
 //media queries
 @mixin mobile {
-    @media screen and (min-width: $mobile-breakpoint) {
-      @content;
-    }
+  @media screen and (min-width: $mobile-breakpoint) {
+    @content;
   }
-  
-  @mixin tablet {
-    @media screen and (min-width: $tablet-breakpoint) {
-      @content;
-    }
-  }
-  
-  @mixin desktop {
-    @media screen and (min-width: $desktop-breakpoint) {
-      @content;
-    }
-  }
+}
 
-  //typography mixins
-  @mixin font-bodycopy {
-    font-family: $font-local;
-    font-weight: 400;
-    font-size: 0.813rem;
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+//typography mixins
+@mixin font-bodycopy {
+  font-family: $font-local;
+  font-weight: 400;
+  font-size: 0.813rem;
+  line-height: 1.125rem;
+  @include tablet {
+    font-size: 0.875rem;
     line-height: 1.125rem;
-    @include tablet {
-      font-size: 0.875rem;
-      line-height: 1.125rem;
-    }
   }
+}
 
-  @mixin font-pageheader {
-    font-family: $font-local;
+@mixin font-pageheader {
+  font-family: $font-local;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  @include tablet {
     font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    @include tablet {
-      font-weight: 700;
-      font-size: 2.063rem;
-      line-height: 2.75rem;
-    }
+    font-size: 2.063rem;
+    line-height: 2.75rem;
   }
+}
 
-  @mixin font-labelsbuttons {
-    font-family: $font-local;
+@mixin font-labelsbuttons {
+  font-family: $font-local;
+  font-weight: 700;
+  font-size: 0.625rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  @include tablet {
     font-weight: 700;
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     line-height: 1.25rem;
-    text-transform: uppercase;
-    // color: white;
-    @include tablet {
-      font-weight: 700;
-      font-size: 0.75rem;
-      line-height: 1.25rem;
-    }
   }
+}
 
-  @mixin logo {
-    height: 3.125rem;
-    width: 3.125rem;
-    background: $alabaster;
+@mixin font-italic {
+  font-family: $font-local;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 2rem;
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.75rem;
   }
+}
+
+@mixin logo {
+  height: 3.125rem;
+  width: 3.125rem;
+  background: $alabaster;
+}
