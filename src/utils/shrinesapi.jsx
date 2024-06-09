@@ -17,6 +17,16 @@ export class ShrineFinderApi {
     }
   }
 
+  async getPrefectures() {
+    try {
+      const response = await axios.get(`${this.baseURL}/prefectures`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching prefectures:", error);
+      throw error;
+    }
+  }
+
   async getRandomShrine() {
     try {
       const response = await axios.get(`${this.baseURL}/random`);
@@ -29,7 +39,7 @@ export class ShrineFinderApi {
 
   async getShrineById(id) {
     try {
-      const response = await axios.get(`${this.baseURL}/${id}`);
+      const response = await axios.get(`${this.baseURL}/shrine/${id}`);
       return response.data;
     } catch (error) {
       console.error(`Error fetching shrine by id ${id}:`, error);
@@ -37,15 +47,25 @@ export class ShrineFinderApi {
     }
   }
 
-  async getShrinesByPrefecture() {
+  async getReviewsByShrineId(id) {
+    try {
+      const response = await axios.get(`${this.baseURL}/reviews/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching shrine by id ${id}:`, error);
+      throw error;
+    }
+  }
+
+  async getShrinesByPrefecture(prefecture) {
     try {
       const response = await axios.get(
-        `${this.baseURL}/sortedByPrefecture`
-      ); 
+        `${this.baseURL}/shrines/${prefecture}`
+      );
       return response.data;
     } catch (error) {
       console.error(
-        'Error fetching shrines by prefecture:',
+        `Error fetching shrines by prefecture ${prefecture}:`,
         error
       );
       throw error;
