@@ -1,5 +1,5 @@
 import "./ShrineRoulette.scss";
-import { useRandomShrines } from "../../classes/hooks";
+import { useRandomShrines } from "../../utils/hooks";
 
 const ShrineRoulette = () => {
   const { randomShrine, loading, error } = useRandomShrines();
