@@ -6,7 +6,7 @@ import osaka from "../../assets/images/osaka.png";
 import nara from "../../assets/images/nara.png";
 import kyoto from "../../assets/images/kyoto.png";
 import { useState, useEffect } from "react";
-import { ShrineFinderApi } from "../../classes/shrinesapi";
+import { ShrineFinderApi } from "../../utils/shrinesapi";
 
 const api = new ShrineFinderApi();
 
