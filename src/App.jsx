@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/:id" element={<Prefectures />} />
-        <Route path="/shrine/:id" element={<ShrineMain />} />
+        <Route path="/shrines/:prefecture" element={<Prefectures />} />
+        <Route path="/shrine/:shrineId" element={<ShrineMain />} />
       </Routes>
     </BrowserRouter>
   );
