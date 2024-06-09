@@ -1,0 +1,45 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.landmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include font-bodycopy;
+
+  &__label {
+    @include font-labelsbuttons;
+  }
+
+  &__name {
+    @include font-medium;
+    padding-bottom: 1rem;
+  }
+
+  &__description,
+  &__features {
+    margin: 0.5rem 1rem;
+    text-align: center;
+  }
+  &__souvenirs, 
+    &__deities{
+    margin-bottom: 1rem;
+  }
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  &__comment {
+    margin: 0.5rem 1rem;
+    align-self: center;
+  }
+  
+&__reviewer,
+&__rating {
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+}
+}
