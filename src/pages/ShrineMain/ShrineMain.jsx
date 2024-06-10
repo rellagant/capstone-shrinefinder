@@ -3,13 +3,15 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useState, useEffect } from "react";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import ReviewForm from "../../components/ReviewForm/ReviewForm";
 
 const api = new ShrineFinderApi();
 
 export default function ShrineMain() {
   const { shrineId } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [shrine, setShrine] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -32,6 +34,10 @@ export default function ShrineMain() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  const handleReviewSuccess = () => {
+    navigate(`/shrine/${shrineId}`)
+  }
 
   if (shrine.length === 0) {
     return;
@@ -79,13 +85,15 @@ export default function ShrineMain() {
             <div className="landmark__review" key={i}>
               <div className="landmark__label">Rating</div>
               <p className="reviews__rating">{review.rating}</p>
-
+              <div className="landmark__label">Comment</div>
               <p className="reviews__comment">{review.comment}</p>
+              <div className="landmark__label">Name</div>
               <p className="reviews__reviewer">{review.reviewer}</p>
             </div>
           ))}
         </div>
       </section>
+      <ReviewForm shrineId={shrineId} onSuccess={handleReviewSuccess}/>
       <Footer />
     </>
   );

@@ -2,13 +2,13 @@ import Header from "../../components/Header/Header";
 import "./Prefectures.scss";
 import Footer from "../../components/Footer/Footer";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 
 const api = new ShrineFinderApi();
 
 export default function Prefectures() {
-  const { prefecture } = useParams(); 
+  const { prefecture } = useParams();
   const location = useLocation();
   const [shrines, setShrines] = useState([]);
 
@@ -32,40 +32,25 @@ export default function Prefectures() {
     <>
       <Header />
       <div className="shrines">
-        <h1 className="shrines__header">Shrines and Power Spots in {prefecture}</h1>
+        <h1 className="shrines__header">
+          Shrines and Power Spots in {prefecture}
+        </h1>
         <div key={prefecture}>
           {shrines.map((shrine) => (
-              
-              
-                  <div key={shrine.id}>
-                    <h4>{shrine.name}</h4>
-                    <p>{shrine.city}</p>
-                    <Link key={shrine.id} to={`/shrine/${shrine.id}`}>
-                    <img src={api.baseURL+shrine.image} alt={`${shrine.name} shrine`} />
-                    </Link>
-                  </div>
-            ))}
+            <div key={shrine.id}>
+              <h4>{shrine.name}</h4>
+              <p>{shrine.city}</p>
+              <Link key={shrine.id} to={`/shrine/${shrine.id}`}>
+                <img
+                  src={api.baseURL + shrine.image}
+                  alt={`${shrine.name} shrine`}
+                />
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
-      {/* <div className="shrines">
-        <h1 className="shrines__header">Shrines and Power Spots in {id}</h1>
-        <h2>{id.name}</h2>
 
-        <div> */}
-      {/* {shrineData.find((prefecture) => {
-            (prefecture === id)
-            .map((shrine) => {
-              return (
-                <div key={shrine.id}>
-                  <h4>{shrine.name}</h4>
-                  <p>{shrine.city}</p>
-                  <img src={shrine.image} alt={`${shrine.name} shrine`} />
-                </div>
-              );
-            });
-          })} */}
-      {/* </div>
-      </div> */}
       <Footer />
     </>
   );
