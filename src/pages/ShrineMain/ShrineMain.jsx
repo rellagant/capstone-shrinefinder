@@ -52,6 +52,8 @@ export default function ShrineMain() {
           src={api.baseURL + shrine.image}
           alt="torii"
         />
+        <div className="landmark__wrapper">
+        <div className="landmark__left">
         <div className="landmark__name">{shrine.name}</div>
         <div className="landmark__label">City</div>
         <div className="landmark__city">{shrine.city}</div>
@@ -80,7 +82,10 @@ export default function ShrineMain() {
             </div>
           ))}
         </div>
+        </div>
+        <div className="landmark__right">
         <div className="landmark__reviews reviews">
+          <h2 className="landmark__review-title">Reviews</h2>
           {reviews.map((review, i) => (
             <div className="landmark__review" key={i}>
               <div className="landmark__label">Rating</div>
@@ -91,6 +96,8 @@ export default function ShrineMain() {
               <p className="reviews__reviewer">{review.reviewer}</p>
             </div>
           ))}
+        </div>
+        </div>
         </div>
       </section>
       <ReviewForm shrineId={shrineId} onSuccess={handleReviewSuccess}/>

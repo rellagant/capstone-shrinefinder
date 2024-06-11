@@ -2,18 +2,64 @@
 @use "../../styles/partials/mixins" as *;
 
 .landmark {
+  @include font-bodycopy;
+
+  &__image {
+    height: 11.875rem;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin: 0.5rem 1rem;
+    @include tablet {
+      height: 23rem;
+      width: 97vw;
+      margin: 1rem 1rem;
+      @include desktop {
+        height: 45rem;
+      }
+    }
+  }
+
+  &__wrapper {
+   @include tablet {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+
+   }
+
+  }
+&__left {
+  @include tablet {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include font-bodycopy;
+  width: 65%;
+}
+}
+
+&__right {
+  @include tablet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  }
+}
+
+&__city {
+  text-align: center;
+}
 
   &__label {
     @include font-labelsbuttons;
+    text-align: center;
   }
 
   &__name {
     @include font-medium;
     padding-bottom: 1rem;
+    text-align: center;
   }
 
   &__description,
@@ -21,9 +67,10 @@
     margin: 0.5rem 1rem;
     text-align: center;
   }
-  &__souvenirs, 
-    &__deities{
+  &__souvenirs,
+  &__deities {
     margin-bottom: 1rem;
+    text-align: center;
   }
 }
 
@@ -31,15 +78,27 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-bottom: 1rem;
+  border-top: 1px solid $light-bamboo;
+  @include tablet {
+    border-top: none;
+  }
 
   &__comment {
     margin: 0.5rem 1rem;
     align-self: center;
   }
-  
-&__reviewer,
-&__rating {
+
+  &__reviewer {
     margin-top: 0;
     margin-bottom: 0.2rem;
+  }
+  &__rating {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+  }
 }
+
+.landmark__review-title {
+  margin-top: 0.5rem;
 }
