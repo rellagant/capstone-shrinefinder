@@ -1,9 +1,9 @@
 import "./Cover.scss";
 import { useEffect, useState } from "react";
-import cover from "../../assets/mockups/mockup3.png";
+import cover from "../../assets/images/rantan.png";
 
 export default function Cover() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const handleResize = () => {
@@ -11,23 +11,28 @@ export default function Cover() {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    if (isVisible) {
+    console.log("cover component mounted")
+    const coverShown = localStorage.getItem('coverShown');
+    console.log('coverShown:', coverShown);
+    if (!coverShown && isMobile) {
+      console.log("Showing cover");
+      setIsVisible(true);
+      localStorage.setItem('coverShown', 'true');
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 2500);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-        clearTimeout(timer);
-      };
-    } else {
-      window.removeEventListener("resize", handleResize);
+      }, 2000); 
+      return () => clearTimeout(timer);
     }
-  }, [isVisible]);
+  }, [isMobile]);
 
-  if (!isMobile || !isVisible) return null;
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
     <>
