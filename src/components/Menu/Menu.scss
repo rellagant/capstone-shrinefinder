@@ -1,27 +1,37 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-
 .menu {
+  border-top: 1px solid $light-bamboo;
+
+  &__title {
+    @include font-italic;
+    text-align: center;
+  }
+  &__map {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 1px solid $light-bamboo;
-
-    &__title {
-        @include font-italic;
+    @include desktop {
+  flex-direction: row;
     }
+  }
 
-    &__image {
-        height: 11.875rem;
-        width: 90%;
+  &__image {
+    height: 11.875rem;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin: 0.5rem 1rem;
+    @include tablet {
+      height: 23rem;
+      width: 97vw;
+      margin: 1rem 1rem;
+      @include desktop {
+        height: 10rem;
+        width: 14rem;
         object-fit: cover;
-        border-radius: 0.25rem;
-        margin: .5rem 1rem; 
-        @include tablet {
-            height: 23rem;
-            width: 97vw;
-            margin: 1rem 1rem;
-        }
+      }
     }
+  }
 }
