@@ -32,16 +32,18 @@ export default function Prefectures() {
     <>
       <Header />
       <div className="shrines">
-        <h1 className="shrines__header">
+        <h3 className="shrines__header">
           Shrines and Power Spots in {prefecture}
-        </h1>
-        <div key={prefecture}>
+        </h3>
+        
+        <div className ="shrines__wrapper"
+        key={prefecture}>
           {shrines.map((shrine) => (
-            <div key={shrine.id}>
-              <h4>{shrine.name}</h4>
-              <p>{shrine.city}</p>
+            <div key={shrine.id} className="shrines__item">
+              <h2 className="shrines__title">{shrine.name}</h2>
+              <p className="shrines__city">{shrine.city}</p>
               <Link key={shrine.id} to={`/shrine/${shrine.id}`}>
-                <img
+                <img className="shrines__image"
                   src={api.baseURL + shrine.image}
                   alt={`${shrine.name} shrine`}
                 />

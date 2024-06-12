@@ -24,6 +24,7 @@
     border-radius: 0.25rem;
     margin: 0.5rem 1rem;
     @include tablet {
+      border-radius: 0.5rem;
       height: 23rem;
       width: 97vw;
       margin: 1rem 1rem;
