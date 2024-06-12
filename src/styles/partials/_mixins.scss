@@ -87,22 +87,25 @@
 }
 
 @mixin form-field {
-      height: 2rem;
-      border-radius: 0.25rem;
+  @include mobile {
+      height: 1.5rem;
+      border-radius: 0.5rem;
       
       @include tablet {
           height: 2rem;
           width: 15rem;
          
       }
-  
+  }
   &::placeholder {
-    color: $primary-text-color;
+    color: $bamboo;
   }
 
   &:focus {
-    outline: 2px solid $accent-color;
+    outline: 2px solid $primary-call-to-action;
   } 
 
   
 }
+  
+
