@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useState, useEffect } from "react";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ReviewForm from "../../components/ReviewForm/ReviewForm";
 
 const api = new ShrineFinderApi();
@@ -11,7 +11,6 @@ const api = new ShrineFinderApi();
 export default function ShrineMain() {
   const { shrineId } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [shrine, setShrine] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -35,9 +34,14 @@ export default function ShrineMain() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const handleReviewSuccess = () => {
-    navigate(`/shrine/${shrineId}`)
-  }
+  const handleReviewSuccess = async () => {
+    try {
+      const reviewData = await api.getReviewsByShrineId(shrineId);
+      setReviews(reviewData);
+    } catch (error) {
+      console.error("Error fetching updated reviews:", error);
+    }
+  };
 
   if (shrine.length === 0) {
     return;
