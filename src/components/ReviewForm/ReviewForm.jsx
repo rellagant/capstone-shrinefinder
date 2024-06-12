@@ -6,11 +6,21 @@ import { ShrineFinderApi } from "../../utils/shrinesapi";
 const api = new ShrineFinderApi();
 
 export default function ReviewForm({ shrineId, onSuccess }) {
+  const validate = (review) => {
+    const newErrors = {};
+    if (!review.rating) newErrors.rating = "Rating is required.";
+    if (!review.comment) newErrors.comment = "Comment is required.";
+    if (!review.reviewer) newErrors.reviewer = "Name is required.";
+    return newErrors;
+  };
+
   const [review, setReview] = useState({
     rating: "",
     comment: "",
     reviewer: "",
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,8 +33,12 @@ export default function ReviewForm({ shrineId, onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!review.rating || !review.comment || !review.reviewer) {
-      toast.error("All fields are required");
+    const validationErrors = validate(review);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
       return;
     }
 
@@ -37,6 +51,7 @@ export default function ReviewForm({ shrineId, onSuccess }) {
         comment: "",
         reviewer: "",
       });
+      setErrors({});
     } catch (error) {
       toast.error("Error submitting review.");
       console.error("Error submitting review:", error);
@@ -45,48 +60,58 @@ export default function ReviewForm({ shrineId, onSuccess }) {
 
   return (
     <section className="review-form-container">
-    <h1 className="review-form-title">Submit a Review</h1>
-    <form onSubmit={handleSubmit} className="review-form">
-      <div className="review-form__group">
-        <label htmlFor="rating">Rating</label>
-        <input
-          className="review-form__field"
-          type="number"
-          id="rating"
-          name="rating"
-          value={review.rating}
-          onChange={handleChange}
-          min="1"
-          max="5"
-        />
-      </div>
-      <div className="review-form__group">
-        <label htmlFor="comment">Comment</label>
-        <textarea
-          className="review-form__comment"
-          id="comment"
-          name="comment"
-          placeholder="Add your review here"
-          value={review.comment}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="review-form__name">
-        <label htmlFor="reviewer">Reviewer</label>
-        <input
-          type="text"
-          id="reviewer"
-          name="reviewer"
-          placeholder="Name goes here"
-          value={review.reviewer}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="review-form__buttons">
-        <button type="submit">Submit Review</button>
-        <ToastContainer />
-      </div>
-    </form>
-  </section>
-);
+      <h1 className="review-form-title">Submit a Review</h1>
+      <form onSubmit={handleSubmit} className="review-form">
+        <div className="review-form__group">
+          <label htmlFor="rating">Rating</label>
+          <input
+            className="review-form__field"
+            type="number"
+            id="rating"
+            name="rating"
+            value={review.rating}
+            onChange={handleChange}
+            min="1"
+            max="5"
+          />
+          {errors.rating && (
+            <div className="review-form__error">{errors.rating}</div>
+          )}
+        </div>
+        <div className="review-form__group">
+          <label htmlFor="comment">Comment</label>
+          <textarea
+            className="review-form__text"
+            id="comment"
+            name="comment"
+            placeholder="Add your review here"
+            value={review.comment}
+            onChange={handleChange}
+          />
+          {errors.comment && (
+            <div className="review-form__error">{errors.comment}</div>
+          )}
+        </div>
+        <div className="review-form__name">
+          <label htmlFor="reviewer">Reviewer</label>
+          <input
+            className="review-form__name"
+            type="text"
+            id="reviewer"
+            name="reviewer"
+            placeholder="Name goes here"
+            value={review.reviewer}
+            onChange={handleChange}
+          />
+          {errors.reviewer && (
+            <div className="review-form__error">{errors.reviewer}</div>
+          )}
+        </div>
+        <div className="review-form__buttons">
+          <button type="submit">Submit Review</button>
+          <ToastContainer />
+        </div>
+      </form>
+    </section>
+  );
 }

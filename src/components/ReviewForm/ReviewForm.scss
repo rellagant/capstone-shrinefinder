@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 1px solid $light-bamboo;
 }
 
 .review-form-title {
@@ -17,8 +18,8 @@ label {
 }
 
 .review-form__field {
-  border-color: $light-bamboo;
-  border-radius: 4px;
+ margin-right: 2rem;
+  border: none;
 }
 
 .review-form__buttons {
