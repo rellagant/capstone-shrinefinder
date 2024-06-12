@@ -1,6 +1,6 @@
 import "./ReviewForm.scss";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
 
 const api = new ShrineFinderApi();
@@ -44,8 +44,8 @@ export default function ReviewForm({ shrineId, onSuccess }) {
 
     try {
       const response = await api.postReview(shrineId, review);
-      toast.success("Review submitted successfully");
-      onSuccess(response);
+      // toast.success("Review submitted successfully");
+      onSuccess(response.data);
       setReview({
         rating: "",
         comment: "",
@@ -53,7 +53,7 @@ export default function ReviewForm({ shrineId, onSuccess }) {
       });
       setErrors({});
     } catch (error) {
-      toast.error("Error submitting review.");
+      // toast.error("Error submitting review.");
       console.error("Error submitting review:", error);
     }
   };
@@ -63,7 +63,9 @@ export default function ReviewForm({ shrineId, onSuccess }) {
       <h1 className="review-form-title">Submit a Review</h1>
       <form onSubmit={handleSubmit} className="review-form">
         <div className="review-form__group">
-          <label htmlFor="rating">Rating</label>
+          <label className="review-form__rating" htmlFor="input_number">
+            Rating
+          </label>
           <input
             className="review-form__field"
             type="number"
@@ -71,6 +73,7 @@ export default function ReviewForm({ shrineId, onSuccess }) {
             name="rating"
             value={review.rating}
             onChange={handleChange}
+            placeholder="1-5..."
             min="1"
             max="5"
           />
@@ -92,14 +95,14 @@ export default function ReviewForm({ shrineId, onSuccess }) {
             <div className="review-form__error">{errors.comment}</div>
           )}
         </div>
-        <div className="review-form__name">
+        <div className="review-form__group">
           <label htmlFor="reviewer">Reviewer</label>
-          <input
+          <textarea
             className="review-form__name"
             type="text"
             id="reviewer"
             name="reviewer"
-            placeholder="Name goes here"
+            placeholder="Name"
             value={review.reviewer}
             onChange={handleChange}
           />
@@ -108,8 +111,10 @@ export default function ReviewForm({ shrineId, onSuccess }) {
           )}
         </div>
         <div className="review-form__buttons">
-          <button type="submit">Submit Review</button>
-          <ToastContainer />
+          <button className="review-form__submit" type="submit">
+            Submit Review
+          </button>
+          {/* <ToastContainer /> */}
         </div>
       </form>
     </section>
