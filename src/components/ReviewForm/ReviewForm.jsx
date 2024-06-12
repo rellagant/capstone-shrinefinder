@@ -1,6 +1,5 @@
 import "./ReviewForm.scss";
 import { useState } from "react";
-// import { ToastContainer, toast } from "react-toastify";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
 
 const api = new ShrineFinderApi();
@@ -44,7 +43,7 @@ export default function ReviewForm({ shrineId, onSuccess }) {
 
     try {
       const response = await api.postReview(shrineId, review);
-      // toast.success("Review submitted successfully");
+
       onSuccess(response.data);
       setReview({
         rating: "",
@@ -53,7 +52,6 @@ export default function ReviewForm({ shrineId, onSuccess }) {
       });
       setErrors({});
     } catch (error) {
-      // toast.error("Error submitting review.");
       console.error("Error submitting review:", error);
     }
   };
@@ -114,7 +112,6 @@ export default function ReviewForm({ shrineId, onSuccess }) {
           <button className="review-form__submit" type="submit">
             Submit Review
           </button>
-          {/* <ToastContainer /> */}
         </div>
       </form>
     </section>
