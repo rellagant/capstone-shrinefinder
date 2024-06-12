@@ -21,35 +21,34 @@
   }
 
   &__wrapper {
-   @include tablet {
-    display: flex;
-    justify-content: space-evenly;
+    @include tablet {
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center;
+    }
+  }
+  &__left {
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 65%;
+      border-right: 1px solid $light-bamboo;
+    }
+  }
+
+  &__right {
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+    }
+  }
+
+  &__city {
     text-align: center;
-
-   }
-
   }
-&__left {
-  @include tablet {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 65%;
-}
-}
-
-&__right {
-  @include tablet {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 25%;
-  }
-}
-
-&__city {
-  text-align: center;
-}
 
   &__label {
     @include font-labelsbuttons;
@@ -71,6 +70,12 @@
   &__deities {
     margin-bottom: 1rem;
     text-align: center;
+  }
+
+  &__review {
+    border-top: 1px solid $light-bamboo;
+    padding-bottom: .5rem;
+    padding-top: 0.5rem;
   }
 }
 
