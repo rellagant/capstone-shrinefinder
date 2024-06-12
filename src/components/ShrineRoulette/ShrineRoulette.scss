@@ -32,9 +32,13 @@
         border-radius: 0.25rem;
         margin: 1rem 0 0 0;
         @include tablet {
+            border-radius: .5rem;
             height: 40rem;
             width: 97vw;
             margin: 1.5rem 1rem;
+            @include desktop {
+                height: 50rem;
+            }
         }
     }
 }
