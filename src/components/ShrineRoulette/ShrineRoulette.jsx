@@ -1,11 +1,17 @@
 import "./ShrineRoulette.scss";
 import { useRandomShrines } from "../../utils/hooks";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
+import { useEffect } from "react";
 
 const api = new ShrineFinderApi();
 
 const ShrineRoulette = () => {
-  const { randomShrine, loading, error } = useRandomShrines();
+  const { randomShrine, loading, error, fetchRandomShrine } =
+    useRandomShrines();
+
+    useEffect(() => {
+      fetchRandomShrine();
+    }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -18,13 +24,19 @@ const ShrineRoulette = () => {
     return <div>No random shrine found</div>;
   }
 
+
+
   return (
     <div className="shrine">
       <h2 className="shrine__header">Rise and Shrine</h2>
       <div className="shrine__wrapper">
         <div className="shrine__title">Name: {randomShrine.name}</div>
         <p className="shrine__city">City: {randomShrine.city}</p>
-        <img src={api.baseURL+randomShrine.image} alt="random" className="shrine__image"/>
+        <img
+          src={api.baseURL + randomShrine.image}
+          alt="random"
+          className="shrine__image"
+        />
       </div>
     </div>
   );
