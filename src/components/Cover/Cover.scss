@@ -2,38 +2,37 @@
 @use "../../styles/partials/mixins" as *;
 
 .cover-page {
-    position: fixed;
-    // top: 0;
-    // left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-  
-    &.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-  
-  .cover-content {
-    text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 
-    .cover-image {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        margin-bottom: 1.25rem;
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
+.cover-content {
+  text-align: center;
+
+  .cover-image {
+    width: 100vw;
     height: 100vh;
-    // overflow: hidden;
+    object-fit: cover;
   }
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
