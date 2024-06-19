@@ -1,5 +1,4 @@
 import "./ShrineMain.scss";
-import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useState, useEffect } from "react";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
@@ -49,7 +48,6 @@ export default function ShrineMain() {
 
   return (
     <>
-      <Header />
       <section className="landmark">
         <img
           className="landmark__image"

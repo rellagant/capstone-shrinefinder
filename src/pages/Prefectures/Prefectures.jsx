@@ -1,4 +1,3 @@
-import Header from "../../components/Header/Header";
 import "./Prefectures.scss";
 import Footer from "../../components/Footer/Footer";
 import { ShrineFinderApi } from "../../utils/shrinesapi";
@@ -30,7 +29,6 @@ export default function Prefectures() {
 
   return (
     <>
-      <Header />
       <div className="shrines">
         <h3 className="shrines__header">
           Shrines and Power Spots in {prefecture}
