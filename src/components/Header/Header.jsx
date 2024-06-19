@@ -1,11 +1,14 @@
 import "./Header.scss";
 import LogoImg from "../../assets/images/icons/1.svg";
 import { Link } from "react-router-dom";
+import { useRandomShrines } from "../../utils/hooks";
+
 
 export default function Header() {
-  const handleButtonClick = () => {
-    window.location.reload();
-  };
+
+  const { loading, error, handleGetLucky } = useRandomShrines();
+  
+
   return (
     <>
       <header className="header">
@@ -19,7 +22,11 @@ export default function Header() {
           </div>
         </Link>
 
-        <button className="header__button" type="button" onClick={handleButtonClick}>
+        <button
+          className="header__button"
+          type="button"
+          onClick={handleGetLucky}
+          disabled={loading || error}>
           Get Lucky
         </button>
       </header>
