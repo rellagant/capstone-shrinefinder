@@ -10,7 +10,7 @@ const ShrineRoulette = () => {
     useRandomShrines();
 
     useEffect(() => {
-      fetchRandomShrine();
+      fetchRandomShrine(); // eslint-disable-next-line
     }, []);
 
   if (loading) {
