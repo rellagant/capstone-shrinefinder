@@ -1,7 +1,7 @@
 # Project Title
 
 Shrine Finder
-![Shrinefinder Logo](./src/assets/images/icons/shrinefinderlogo.svg)
+<img src="./src/assets/images/icons/shrinefinderlogo.svg" width="175">
 
 Shrine Finder is a web application designed for tourists in Japan to discover lesser-known shrines that are off the beaten path. The app provides detailed information about each shrine, including unique features, associated deities, and available lucky charms (omamori) or shrine seals/calligraphy (goshuin).
 >There are estimated to be around 80,000 shrines in Japan. - wiki
